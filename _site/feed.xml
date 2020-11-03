@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Jekflix | A blog theme for Jekyll</title>
-    <description>Jekflix is a template for Jekyll inspired by Netflix and made by Thiago Rossener.</description>
+    <title>liu_if_else's blog</title>
+    <description>A tech blog focusing on game programming and Unity3D.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 03 Nov 2020 19:08:31 +0800</pubDate>
-    <lastBuildDate>Tue, 03 Nov 2020 19:08:31 +0800</lastBuildDate>
+    <pubDate>Tue, 03 Nov 2020 23:09:13 +0800</pubDate>
+    <lastBuildDate>Tue, 03 Nov 2020 23:09:13 +0800</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
     
       <item>
