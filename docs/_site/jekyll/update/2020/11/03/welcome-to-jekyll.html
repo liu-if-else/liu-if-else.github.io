@@ -18,7 +18,7 @@
     
 
     <title>Welcome to Jekyll! | </title>
-    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.">
+    <meta name="description" content="A tech blog focusing on game programming and Unity3D.">
     
         <meta name="keywords" content="">
     
@@ -26,18 +26,18 @@
     <!-- Social: Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Welcome to Jekyll! | ">
-    <meta name="twitter:description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.">
+    <meta name="twitter:description" content="A tech blog focusing on game programming and Unity3D.">
     <meta property="twitter:image:src" content="http://localhost:4000/assets/img/blog-image.png">
     
-        <meta name="twitter:site" content="@jekyllrb">
+        <meta name="twitter:site" content="@twitter_username">
     
 
     <!-- Social: Facebook / Open Graph -->
     <meta property="og:url" content="http://localhost:4000/jekyll/update/2020/11/03/welcome-to-jekyll.html">
     <meta property="og:title" content="Welcome to Jekyll! | ">
     <meta property="og:image" content="http://localhost:4000/assets/img/blog-image.png">
-    <meta property="og:description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.">
-    <meta property="og:site_name" content="Blog of liu-if-else">
+    <meta property="og:description" content="A tech blog focusing on game programming and Unity3D.">
+    <meta property="og:site_name" content="liu_if_else|Blog">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
@@ -69,7 +69,7 @@
 
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link rel="canonical" href="http://localhost:4000/jekyll/update/2020/11/03/welcome-to-jekyll.html">
-    <link rel="alternate" type="application/rss+xml" title="Blog of liu-if-else" href="http://localhost:4000/feed.xml" />
+    <link rel="alternate" type="application/rss+xml" title="liu_if_else|Blog" href="http://localhost:4000/feed.xml" />
 
     <!-- Include extra styles -->
     
@@ -198,7 +198,7 @@ November 3, 2020
 
         <section class="share">
     <h3>Share</h3>
-    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20http://localhost:4000/jekyll/update/2020/11/03/welcome-to-jekyll.html%20via%20&#64;jekyllrb&hashtags="
+    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20http://localhost:4000/jekyll/update/2020/11/03/welcome-to-jekyll.html%20via%20&#64;twitter_username&hashtags="
     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
         <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
     </a>
@@ -213,21 +213,66 @@ November 3, 2020
 
         
 
+<section class="comments">
+    <h3>Comments</h3>
+    <div id="disqus_thread"></div>
+</section>
+<script type="text/javascript">
+    var disqus_loaded = false;
+
+    function load_disqus()
+    {
+        disqus_loaded = true;
+        var disqus_shortname = 'liu_if_else';
+        var disqus_title = '';
+        var disqus_url = '/jekyll/update/2020/11/03/welcome-to-jekyll.html';
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        var ldr = document.getElementById('disqus_loader');
+    };
+    window.onscroll = function(e) {
+        if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 800)) {
+            //hit bottom of page
+            if (disqus_loaded==false)
+                load_disqus()
+        }
+    };
+</script>
+
+
+
         <footer>
     <p>
       
-        <a href="https://github.com/jekyll" title="Github">
+        <a href="https://github.com/github_username" title="Github">
           <svg><use xlink:href="#icon-github"></use></svg>
         </a>
       
       
+        <a href="https://www.facebook.com/facebook_username" title="Facebook">
+          <svg><use xlink:href="#icon-facebook"></use></svg>
+        </a>
       
-        <a href="https://twitter.com/jekyllrb" title="Twitter">
+      
+        <a href="https://twitter.com/twitter_username" title="Twitter">
           <svg><use xlink:href="#icon-twitter"></use></svg>
         </a>
       
       
+        <a href="https://medium.com/@medium_username" title="Medium">
+          <svg><use xlink:href="#icon-medium"></use></svg>
+        </a>
       
+      
+        <a href="https://www.instagram.com/instagram_username" title="Instagram">
+          <svg><use xlink:href="#icon-instagram"></use></svg>
+        </a>
+      
+      
+        <a href="https://www.linkedin.com/in/linkedin_username" title="LinkedIn">
+          <svg><use xlink:href="#icon-linkedin"></use></svg>
+        </a>
       
     </p>
 
@@ -254,7 +299,7 @@ November 3, 2020
   "@context": "http://schema.org",
   "@type": "Organization",
   "name": "",
-  "description": "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.",
+  "description": "A tech blog focusing on game programming and Unity3D.",
   "url": "http://localhost:4000/",
   "logo": {
       "@type": "ImageObject",
@@ -263,7 +308,7 @@ November 3, 2020
       "height": "315"
   },
   "sameAs": [
-    "https://github.com/jekyll","https://twitter.com/jekyllrb"
+    "https://github.com/github_username","https://www.facebook.com/facebook_username","https://twitter.com/twitter_username","https://medium.com/@medium_username","https://www.instagram.com/instagram_username","https://www.linkedin.com/in/linkedin_username"
   ]
 }
 </script>
