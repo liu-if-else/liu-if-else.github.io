@@ -26,7 +26,7 @@ disqus_username: liu-if-else
 
 # Social Media Settings
 # Remove the item if you don't need it
-github_username: liu_if_else
+github_username: liu-if-else
 facebook_username: facebook_username
 twitter_username: twitter_username
 instagram_username: instagram_username
@@ -102,4 +102,4 @@ exclude: [
 ]
 
 # Theme
-version: v3.1.0
+version: v1.0.0

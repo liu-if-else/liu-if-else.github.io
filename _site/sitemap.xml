@@ -187,27 +187,6 @@
     
     
         <url>
-            <loc>http://localhost:4000/welcome-to-the-desert-of-the-real/view-all/</loc>
-            <changefreq>weekly</changefreq>
-            <priority>0.8</priority>
-            <lastmod>2019-05-17</lastmod>
-        </url>
-    
-        <url>
-            <loc>http://localhost:4000/welcome-to-the-desert-of-the-real/2/</loc>
-            <changefreq>weekly</changefreq>
-            <priority>0.8</priority>
-            <lastmod>2019-05-17</lastmod>
-        </url>
-    
-        <url>
-            <loc>http://localhost:4000/welcome-to-the-desert-of-the-real/</loc>
-            <changefreq>weekly</changefreq>
-            <priority>0.8</priority>
-            <lastmod>2019-05-17</lastmod>
-        </url>
-    
-        <url>
             <loc>http://localhost:4000/why-books-should-be-your-priority/</loc>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
@@ -305,6 +284,12 @@
             <lastmod>2010-09-10</lastmod>
         </url>
     
+    
+        <url>
+            <loc>http://localhost:4000/authors/liu_if_else/</loc>
+            <changefreq>monthly</changefreq>
+            <priority>0.5</priority>
+        </url>
     
         <url>
             <loc>http://localhost:4000/authors/thiagorossener/</loc>
