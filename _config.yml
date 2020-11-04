@@ -1,5 +1,5 @@
 # Site Settings
-name: liu_if_else
+name: liu_if_else's blog
 title: liu_if_else's blog
 description: A tech blog focusing on game programming and Unity3D.
 tags:
@@ -19,7 +19,7 @@ menu:
     url: /contact
   - title: Feed
     url: /feed.xml
-email: no-reply@example.com
+email: /f/mjvprpak
 comments: true
 disqus_username: liu-if-else
 
@@ -27,11 +27,11 @@ disqus_username: liu-if-else
 # Social Media Settings
 # Remove the item if you don't need it
 github_username: liu_if_else
-#facebook_username: facebook_username
-#twitter_username: twitter_username
-#instagram_username: instagram_username
-#linkedin_username: linkedin_username
-#medium_username: medium_username
+facebook_username: facebook_username
+twitter_username: twitter_username
+instagram_username: instagram_username
+linkedin_username: linkedin_username
+medium_username: medium_username
 
 
 # Posts Settings
@@ -58,7 +58,7 @@ collections:
   authors:
     output: true
 paginate_path: "/page/:num/"
-show_get_theme_btn: true
+show_get_theme_btn: false
 use_logo: false
 
 # Content paginator
