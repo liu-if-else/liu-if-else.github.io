@@ -346,13 +346,14 @@ November 4, 2020
         var dsq = document.createElement('script'); 
         dsq.type = 'text/javascript'; 
         dsq.async = true;
-        dsq.src = 'https://utteranc.es/client.js';
-        dsq.repo ="liu-if-else/liu-if-else.github.io";
-        //dsq["issue-term"] = "pathname";
         dsq.setAttribute('issue-term',"pathname");
-        dsq.theme = "github-light";
-        dsq.lable = "💬comment";
-        dsq.crossorigin = "anonymous";
+        dsq.setAttribute('repo',"liu-if-else/liu-if-else.github.io");
+        dsq.setAttribute('theme',"github-light");
+        dsq.setAttribute('lable',"💬comment");
+        dsq.setAttribute('crossorigin',"anonymous");
+        
+        dsq.src = 'https://utteranc.es/client.js';
+
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         var ldr = document.getElementById('disqus_loader');
     };
