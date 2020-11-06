@@ -42,14 +42,15 @@
     {
         utterence_loaded = true;
         var dsq = document.createElement('script'); 
-        dsq.type = 'text/javascript'; 
+        //dsq.type = 'text/javascript'; 
         dsq.async = true;
         dsq.setAttribute('issue-term',"pathname");
         dsq.setAttribute('repo',"liu-if-else/liu-if-else.github.io");
         dsq.setAttribute('theme',"github-light");
         dsq.setAttribute('lable',"💬comment");
         dsq.setAttribute('crossorigin',"anonymous");
-        
+        dsq.setAttribute('cookie',false);
+
         dsq.src = 'https://utteranc.es/client.js';
 
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
