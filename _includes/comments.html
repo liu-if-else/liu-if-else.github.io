@@ -3,7 +3,20 @@
 <section class="comments">
     <h3>{{ site.translations.text.comments | default: "Comments" }}</h3>
     <div id="disqus_thread"></div>
+    <style>
+        .utterances{z-index:-1;}
+    </style>
 </section>
+
+<script src="https://utteranc.es/client.js"
+    repo="liu-if-else/liu-if-else.github.io"
+    issue-term="pathname"
+    theme="github-light"
+    lable="💬comment"
+    crossorigin="anonymous"
+    async>
+</script>
+
 <!--script type="text/javascript">
     var disqus_loaded = false;
 
@@ -26,43 +39,4 @@
         }
     };
 </script-->
-<!--script src="https://utteranc.es/client.js"
-        repo="liu-if-else/liu-if-else.github.io"
-        issue-term="pathname"
-        theme="github-dark"
-        lable="💬comment"
-        crossorigin="anonymous"
-        async>
-</script-->
-
-<script type="text/javascript">
-    var utterence_loaded = false;
-
-    function load_utterence()
-    {
-        utterence_loaded = true;
-        var dsq = document.createElement('script'); 
-        //dsq.type = 'text/javascript'; 
-        dsq.async = true;
-        dsq.setAttribute('issue-term',"pathname");
-        dsq.setAttribute('repo',"liu-if-else/liu-if-else.github.io");
-        dsq.setAttribute('theme',"github-light");
-        dsq.setAttribute('lable',"💬comment");
-        dsq.setAttribute('crossorigin',"anonymous");
-        dsq.setAttribute('cookie',false);
-
-        dsq.src = 'https://utteranc.es/client.js';
-
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        var ldr = document.getElementById('disqus_loader');
-    };
-    window.onscroll = function(e) {
-        if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 800)) {
-            //hit bottom of page
-            if (utterence_loaded==false)
-                load_utterence()
-        }
-    };
-</script>
-
 {% endif %}
