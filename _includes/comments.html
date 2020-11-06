@@ -26,12 +26,40 @@
         }
     };
 </script-->
-<script src="https://utteranc.es/client.js"
+<!--script src="https://utteranc.es/client.js"
         repo="liu-if-else/liu-if-else.github.io"
         issue-term="pathname"
         theme="github-dark"
         lable="💬comment"
         crossorigin="anonymous"
         async>
+</script-->
+
+<script type="text/javascript">
+    var utterence_loaded = false;
+
+    function load_utterence()
+    {
+        utterence_loaded = true;
+        var dsq = document.createElement('script'); 
+        dsq.type = 'text/javascript'; 
+        dsq.async = true;
+        dsq.src = 'https://utteranc.es/client.js';
+        dsq.repo="liu-if-else/liu-if-else.github.io"
+        dsq.issue-term="pathname"
+        dsq.theme="github-dark"
+        dsq.lable="💬comment"
+        dsq.crossorigin="anonymous"
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        var ldr = document.getElementById('disqus_loader');
+    };
+    window.onscroll = function(e) {
+        if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 800)) {
+            //hit bottom of page
+            if (utterence_loaded==false)
+                load_utterence()
+        }
+    };
 </script>
+
 {% endif %}
