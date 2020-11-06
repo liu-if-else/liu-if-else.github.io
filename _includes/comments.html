@@ -4,7 +4,7 @@
     <h3>{{ site.translations.text.comments | default: "Comments" }}</h3>
     <div id="disqus_thread"></div>
 </section>
-<script type="text/javascript">
+<!--script type="text/javascript">
     var disqus_loaded = false;
 
     function load_disqus()
@@ -25,6 +25,12 @@
                 load_disqus()
         }
     };
+</script-->
+<script src="https://utteranc.es/client.js"
+        repo="liu-if-else.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
 </script>
-
 {% endif %}
