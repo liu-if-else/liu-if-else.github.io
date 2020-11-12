@@ -187,13 +187,6 @@
     
     
         <url>
-            <loc>http://localhost:4000/stencil-buffer-of-shaderlab/</loc>
-            <changefreq>weekly</changefreq>
-            <priority>0.8</priority>
-            <lastmod>2020-11-04</lastmod>
-        </url>
-    
-        <url>
             <loc>http://localhost:4000/unity3d-audio-visualizer/</loc>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>

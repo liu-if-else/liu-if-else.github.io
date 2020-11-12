@@ -3,14 +3,6 @@
   
   
     {
-      "title"    : "Stencil Buffer of ShaderLab",
-      "tags"     : "Unity3D, Shader, Stencil Buffer, Shadow Volume, and Outline",
-      "categories" : "Shader",
-      "url"      : "/stencil-buffer-of-shaderlab/",
-      "date"     : "11/04/2020"
-    } ,
-  
-    {
       "title"    : "Unity3D Audio Visualizer",
       "tags"     : "Unity3D and AudioVisualizer",
       "categories" : "Unity3D",

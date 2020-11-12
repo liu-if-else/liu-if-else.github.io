@@ -5,35 +5,13 @@
     <description>A tech blog focusing on game programming and Unity3D.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 06 Nov 2020 15:25:05 +0800</pubDate>
-    <lastBuildDate>Fri, 06 Nov 2020 15:25:05 +0800</lastBuildDate>
+    <pubDate>Thu, 12 Nov 2020 16:07:20 +0800</pubDate>
+    <lastBuildDate>Thu, 12 Nov 2020 16:07:20 +0800</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
     
       <item>
-        <title>Stencil Buffer of ShaderLab</title>
-        <description>&lt;p&gt;TODO&lt;/p&gt;
-</description>
-        <pubDate>Wed, 04 Nov 2020 23:34:22 +0800</pubDate>
-        <link>http://localhost:4000/stencil-buffer-of-shaderlab/</link>
-        <guid isPermaLink="true">http://localhost:4000/stencil-buffer-of-shaderlab/</guid>
-        
-        <category>Unity3D</category>
-        
-        <category>Shader</category>
-        
-        <category>Stencil Buffer</category>
-        
-        <category>Shadow Volume</category>
-        
-        <category>Outline</category>
-        
-        <category>Shader</category>
-      </item>
-    
-      <item>
         <title>Unity3D Audio Visualizer</title>
-        <description>&lt;p&gt;TODO&lt;/p&gt;
-</description>
+        <description>&lt;h1 id=&quot;menu&quot;&gt;Menu&lt;/h1&gt; &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;#take-a-gander-at-some-terminologies-and-concepts&quot;&gt;Take a gander at some terminologies and concepts&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;#understand-the-unity-getspectrumdata-function&quot;&gt;Understand the Unity GetSpectrumData function&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;#the-spectrum-datas-and-the-Fourier-transform&quot;&gt;The spectrum datas and the Fourier transform&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;#provide-the-spectrum-datas-to-the-audio-visulizer&quot;&gt;Provide the spectrum datas to the audio visulizer&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt; &lt;h1 id=&quot;take-a-gander-at-some-terminologies-and-concepts&quot;&gt;Take a gander at some terminologies and concepts&lt;/h1&gt; &lt;p&gt;&lt;strong&gt;Sound&lt;/strong&gt;: A sort of wave, viberated in the air with a frequency between 20Hz and 20000Hz.&lt;br /&gt; &lt;strong&gt;Sound Frequency&lt;/strong&gt;: The times that sound viberated per second. It’s unit is herz. &lt;br /&gt; &lt;strong&gt;Sampling&lt;/strong&gt;: Get a sample, a value, from a sound wave. &lt;strong&gt;Sampling Rate&lt;/strong&gt;: The times of the Sampling per second.&lt;br /&gt; &lt;strong&gt;Fast Fourier Transform&lt;/strong&gt;:...</description>
         <pubDate>Wed, 04 Nov 2020 21:37:54 +0800</pubDate>
         <link>http://localhost:4000/unity3d-audio-visualizer/</link>
         <guid isPermaLink="true">http://localhost:4000/unity3d-audio-visualizer/</guid>
