@@ -93,7 +93,7 @@ According to this pitch/frequncy table, the highest pitch's frequncy of octave 9
 
 <a href="https://github.com/liu-if-else/UnitySpectrumData">Github Link of the demo project</a>
 
-In the demo project, I obtained the spectrum datas in Update and injected them to the scale of the cubes and the colors of their materials. The workload is distributed to both CPU and GPU. If you want to reduce the burden of CPU, another idea is to translate the whole spectrum datas, the array, to the GPU(since you have to use this bandwidth to set colors anyway) and to hand over all the work to the shaders, like vertex animation, color calculation and etc. 
+In the demo project, I obtained the spectrum datas in Update and injected them to the scale of the cubes and the colors of their materials. The workload is distributed to both CPU and GPU. If you want to reduce the burden of CPU, another idea is to translate the whole spectrum datas, the array, to the GPU(since you have to use this bandwidth to set colors anyway) and to hand over all the work to the shaders, like vertex animation, color calculation and etc. Using vertex or fragment shader to calculate the color instead of CPU is also more friendly for batching and will reduce a lot of SetPass calls.  
 
 Since the highest frequncy of the song is below 16000Hz, the audio visualizer only uses the 5461 of 8192 cubes to construct itself.  
 
