@@ -76,10 +76,10 @@ In this transfomation process, the FFT firstly needs to sample the original comp
 
 The nowadays music industry adopts the 44100Hz sampling rate standard. So a music audio of one second contains 44100 samples. Because of the restriction of the Nyquist theorem, the highest frequency the FFT can correctly analyze is 22050Hz, which is consistent with the conclusion of the tests above. Given the highest frequency and the length of the spectrumData array, we can further determine the exact frequencies presented by the elements of the array. For example, the demo project has used a 8192 array:  
 
-spectrumData[0]		<=>		22050Hz/8192\*1    = 2.6916 Hz  <=>  6 times sampling per second
-spectrumData[1]		<=>		22050Hz/8192\*2    = 5.3833 Hz  <=>  11 times sampling per second
-...  
-spectrumData[8191]	<=>		22050Hz/8192\*8192 = 22050  Hz  <=>  44100 times sampling per second
+spectrumData[0]		<=>		22050Hz/8192\*1    = 2.6916 Hz  <=>  6 times sampling per second  
+spectrumData[1]		<=>		22050Hz/8192\*2    = 5.3833 Hz  <=>  11 times sampling per second  
+...    
+spectrumData[8191]	<=>		22050Hz/8192\*8192 = 22050  Hz  <=>  44100 times sampling per second  
 
 The dependecies above also tell us that the longer the array the more the sampling and thus the more performance cost of the GetSpectrumData function.  
 
