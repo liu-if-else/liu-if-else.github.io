@@ -21,19 +21,19 @@ math: true
   * [Stencil and depth buffer](#stencil-and-depth-buffer)
   * [Reading and writing](#reading-and-writing)
 - [Outlining](#outlining)
-  * [The shader snippet](#the-shader-snippet)
+  * [The shader](#the-shader)
   * [Remarks](#remarks)
   * [The resulting screenshots](#the-resulting-screenshots)
 - [Polygon Filling](#polygon-filling)
-  * [The shader snippet](#the-shader-snippet-1)
+  * [The shader](#the-shader-1)
   * [Remarks](#remarks-1)
   * [The resulting screenshots](#the-resulting-screenshots-1)
 - [Mirror Restricting](#mirror-restricting)
-  * [The shader snippets](#the-shader-snippets)
+  * [The shaders](#the-shaders)
   * [Remarks](#remarks-2)
   * [The resulting screenshots](#the-resulting-screenshots-2)
 - [Shadow Volume](#shadow-volume)
-  * [The shader snippet](#the-shader-snippet-2)
+  * [The shader](#the-shader-2)
   * [Remarks](#remarks-3)
   * [The resulting screenshots](#the-resulting-screenshots-3)
 
@@ -73,7 +73,7 @@ Stencil {
 
 # Outlining
 
-## The shader snippet
+## The shader
 
 ```c
 Shader "Unlit/StentilOutline"
@@ -234,7 +234,7 @@ Color these fragments and you get the rim.
 
 # Polygon Filling
 
-## The shader snippet
+## The shader
 
 ```c
 Shader "Unlit/PolygonsBeta"
@@ -409,7 +409,7 @@ Each pass has own stencil struct. In first pass all tests will be succeeded and 
 
 # Mirror Restricting
 
-## The shader snippets
+## The shaders
 
 ```c
 Shader "Unlit/TwoPassReflection"
@@ -617,7 +617,7 @@ The solution is to add the stencil test to the TwoPassReflection shader's second
 
 # Shadow Volume
 
-## The shader snippet
+## The shader
 
 ```c
 Shader "Unlit/SV_DepthFailBeta"
