@@ -302,7 +302,7 @@ Screenshots from the Editor:
 ![placeholder](https://res.cloudinary.com/dokdkay80/image/upload/v1604498366/AudioVisualizer/av1_itqijr.png)
 
 ----
-References:  
+**References:**  
 the Nyquist–Shannon sampling theorem — Zero to One  
 <a href="https://www.cnblogs.com/zoneofmine/p/10853096.html">https://www.cnblogs.com/zoneofmine/p/10853096.html</a>  
 
@@ -313,5 +313,5 @@ What is the Fourier Transform — 3Blue1Brown
 <a href="https://www.youtube.com/watch?v=spUNpyF58BY">https://www.youtube.com/watch?v=spUNpyF58BY</a>  
 
 ----
-Chinese Version of this artikel:  
+**Chinese Version of this artikel:**  
 <a href="https://blog.csdn.net/liu_if_else/article/details/51233799">https://blog.csdn.net/liu_if_else/article/details/51233799</a>  

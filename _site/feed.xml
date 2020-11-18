@@ -5,9 +5,23 @@
     <description>A tech blog focusing on game programming and Unity3D.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 14 Nov 2020 15:16:31 +0800</pubDate>
-    <lastBuildDate>Sat, 14 Nov 2020 15:16:31 +0800</lastBuildDate>
+    <pubDate>Wed, 18 Nov 2020 18:31:53 +0800</pubDate>
+    <lastBuildDate>Wed, 18 Nov 2020 18:31:53 +0800</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
+    
+      <item>
+        <title>Stencil Buffer's Uses in Unity3D</title>
+        <description>&lt;h1 id=&quot;menu&quot;&gt;Menu&lt;/h1&gt; &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;#the-stencil-buffer&quot;&gt;The stencil buffer&lt;/a&gt; &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;#the-stencil&quot;&gt;The stencil&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;#stencil-and-depth-buffer&quot;&gt;Stencil and depth buffer&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;#reading-and-writing&quot;&gt;Reading and writing&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt; &lt;/li&gt; &lt;li&gt;&lt;a href=&quot;#outlining&quot;&gt;Outlining&lt;/a&gt; &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;#the-shader-snippet&quot;&gt;The shader snippet&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;#remarks&quot;&gt;Remarks&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;#the-resulting-screenshots&quot;&gt;The resulting screenshots&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt; &lt;/li&gt; &lt;li&gt;&lt;a href=&quot;#polygon-filling&quot;&gt;Polygon Filling&lt;/a&gt; &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;#the-shader-snippet-1&quot;&gt;The shader snippet&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;#remarks-1&quot;&gt;Remarks&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;#the-resulting-screenshots-1&quot;&gt;The resulting screenshots&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt; &lt;/li&gt; &lt;li&gt;&lt;a href=&quot;#mirror-restricting&quot;&gt;Mirror Restricting&lt;/a&gt; &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;#the-shader-snippets&quot;&gt;The shader snippets&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;#remarks-2&quot;&gt;Remarks&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;#the-resulting-screenshots-2&quot;&gt;The resulting screenshots&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt; &lt;/li&gt; &lt;li&gt;&lt;a href=&quot;#shadow-volume&quot;&gt;Shadow Volume&lt;/a&gt; &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;#the-shader-snippet-2&quot;&gt;The shader snippet&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;#remarks-3&quot;&gt;Remarks&lt;/a&gt;&lt;/li&gt; &lt;li&gt;&lt;a href=&quot;#the-resulting-screenshots-3&quot;&gt;The resulting screenshots&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt; &lt;/li&gt; &lt;/ul&gt; &lt;h1 id=&quot;the-stencil-buffer&quot;&gt;The stencil buffer&lt;/h1&gt; &lt;h2 id=&quot;the-stencil&quot;&gt;The stencil&lt;/h2&gt; &lt;p&gt;A stencil is a flat material where...</description>
+        <pubDate>Tue, 17 Nov 2020 19:01:47 +0800</pubDate>
+        <link>http://localhost:4000/stencil-buffer's-uses-in-unity3d/</link>
+        <guid isPermaLink="true">http://localhost:4000/stencil-buffer's-uses-in-unity3d/</guid>
+        
+        <category>Shader</category>
+        
+        <category>Unity3D</category>
+        
+        <category>Unity3D</category>
+      </item>
     
       <item>
         <title>Unity3D Audio Visualizer</title>

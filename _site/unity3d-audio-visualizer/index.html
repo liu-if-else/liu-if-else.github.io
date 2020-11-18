@@ -245,9 +245,9 @@ November 4, 2020
 
 <p>The nowadays music industry adopts the 44100Hz sampling rate standard. So a music audio of one second contains 44100 samples. Because of the restriction of the Nyquist theorem, the highest frequency the FFT can correctly analyze is 22050Hz, which is consistent with the conclusion of the tests above. Given the highest frequency and the length of the spectrumData array, we can further determine the exact frequencies presented by the elements of the array. For example, the demo project has used a 8192 array:</p>
 
-<p>spectrumData[0]		&lt;=&gt;		22050Hz/8192*1    = 2.6916 Hz  &lt;=&gt;  6 times sampling per second
-spectrumData[1]		&lt;=&gt;		22050Hz/8192*2    = 5.3833 Hz  &lt;=&gt;  11 times sampling per second
-…<br />
+<p>spectrumData[0]		&lt;=&gt;		22050Hz/8192*1    = 2.6916 Hz  &lt;=&gt;  6 times sampling per second<br />
+spectrumData[1]		&lt;=&gt;		22050Hz/8192*2    = 5.3833 Hz  &lt;=&gt;  11 times sampling per second<br />
+…  <br />
 spectrumData[8191]	&lt;=&gt;		22050Hz/8192*8192 = 22050  Hz  &lt;=&gt;  44100 times sampling per second</p>
 
 <p>The dependecies above also tell us that the longer the array the more the sampling and thus the more performance cost of the GetSpectrumData function.</p>
@@ -262,7 +262,7 @@ spectrumData[8191]	&lt;=&gt;		22050Hz/8192*8192 = 22050  Hz  &lt;=&gt;  44100 ti
 
 <p><a href="https://github.com/liu-if-else/UnitySpectrumData">Github Link of the demo project</a></p>
 
-<p>In the demo project, I obtained the spectrum datas in Update and injected them to the scale of the cubes and the colors of their materials. The workload is distributed to both CPU and GPU. If you want to reduce the burden of CPU, another idea is to translate the whole spectrum datas, the array, to the GPU(since you have to use this bandwidth to set colors anyway) and to hand over all the work to the shaders, like vertex animation, color calculation and etc.</p>
+<p>In the demo project, I obtained the spectrum datas in Update and injected them to the scale of the cubes and the colors of their materials. The workload is distributed to both CPU and GPU. If you want to reduce the burden of CPU, another idea is to translate the whole spectrum datas, the array, to the GPU(since you have to use this bandwidth to set colors anyway) and to hand over all the work to the shaders, like vertex animation, color calculation and etc. Using vertex or fragment shader to calculate the color instead of CPU is also more friendly for batching and will reduce a lot of SetPass calls.</p>
 
 <p>Since the highest frequncy of the song is below 16000Hz, the audio visualizer only uses the 5461 of 8192 cubes to construct itself.</p>
 
@@ -470,7 +470,7 @@ spectrumData[8191]	&lt;=&gt;		22050Hz/8192*8192 = 22050  Hz  &lt;=&gt;  44100 ti
 <p><img src="https://res.cloudinary.com/dokdkay80/image/upload/v1604498366/AudioVisualizer/av1_itqijr.png" alt="placeholder" /></p>
 
 <hr />
-<p>References:<br />
+<p><strong>References:</strong><br />
 the Nyquist–Shannon sampling theorem — Zero to One<br />
 <a href="https://www.cnblogs.com/zoneofmine/p/10853096.html">https://www.cnblogs.com/zoneofmine/p/10853096.html</a></p>
 
@@ -481,7 +481,7 @@ the Nyquist–Shannon sampling theorem — Zero to One<br />
 <a href="https://www.youtube.com/watch?v=spUNpyF58BY">https://www.youtube.com/watch?v=spUNpyF58BY</a></p>
 
 <hr />
-<p>Chinese Version of this artikel:<br />
+<p><strong>Chinese Version of this artikel:</strong><br />
 <a href="https://blog.csdn.net/liu_if_else/article/details/51233799">https://blog.csdn.net/liu_if_else/article/details/51233799</a></p>
 
 
@@ -516,13 +516,13 @@ the Nyquist–Shannon sampling theorem — Zero to One<br />
         </div>
     </div>
     
-    <a href="" class="post-preview">
+    <a href="/stencil-buffer's-uses-in-unity3d/" class="post-preview">
         <div class="image">
             
-                <img src="/assets/img/off.jpg">
+                <img src="https://res.cloudinary.com/dokdkay80/image/upload/c_scale,w_380/v1604503676/StencilBuffer/p1_fddhcm.png">
             
         </div>
-        <h3 class="title"></h3>
+        <h3 class="title">Stencil Buffer's Uses in Unity3D</h3>
     </a>
 </div>
 
@@ -866,7 +866,7 @@ The nowadays music industry adopts the 44100Hz sampling rate standard. So a musi
 
 spectrumData[0]		&amp;lt;=&amp;gt;		22050Hz/8192*1    = 2.6916 Hz  &amp;lt;=&amp;gt;  6 times sampling per second
 spectrumData[1]		&amp;lt;=&amp;gt;		22050Hz/8192*2    = 5.3833 Hz  &amp;lt;=&amp;gt;  11 times sampling per second
-…
+…  
 spectrumData[8191]	&amp;lt;=&amp;gt;		22050Hz/8192*8192 = 22050  Hz  &amp;lt;=&amp;gt;  44100 times sampling per second
 
 The dependecies above also tell us that the longer the array the more the sampling and thus the more performance cost of the GetSpectrumData function.
@@ -881,7 +881,7 @@ Provide the spectrum datas to the audio visulizer
 
 Github Link of the demo project
 
-In the demo project, I obtained the spectrum datas in Update and injected them to the scale of the cubes and the colors of their materials. The workload is distributed to both CPU and GPU. If you want to reduce the burden of CPU, another idea is to translate the whole spectrum datas, the array, to the GPU(since you have to use this bandwidth to set colors anyway) and to hand over all the work to the shaders, like vertex animation, color calculation and etc.
+In the demo project, I obtained the spectrum datas in Update and injected them to the scale of the cubes and the colors of their materials. The workload is distributed to both CPU and GPU. If you want to reduce the burden of CPU, another idea is to translate the whole spectrum datas, the array, to the GPU(since you have to use this bandwidth to set colors anyway) and to hand over all the work to the shaders, like vertex animation, color calculation and etc. Using vertex or fragment shader to calculate the color instead of CPU is also more friendly for batching and will reduce a lot of SetPass calls.
 
 Since the highest frequncy of the song is below 16000Hz, the audio visualizer only uses the 5461 of 8192 cubes to construct itself.
 
@@ -1103,7 +1103,7 @@ https://www.youtube.com/watch?v=spUNpyF58BY
 Chinese Version of this artikel:
 https://blog.csdn.net/liu_if_else/article/details/51233799
 ",
-            "wordcount": "2911",
+            "wordcount": "2940",
             "inLanguage": "en",
             "dateCreated": "2020-11-04/",
             "datePublished": "2020-11-04/",
