@@ -62,11 +62,11 @@ Back to Unity, Debugging the spectrumdata's values, there is also a significant 
 
 In addtion to the tests, other clues can be found from the angle of the Fourier Transform. The core algorithm of GetSpectrumData function is the FFT. As mentioned in the beginning, sound is a sort of wave where frequency decided pitch and amplitude determined volume. 
 
-![placeholder](https://res.cloudinary.com/dokdkay80/image/upload/v1605162793/AudioVisualizer/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7_2020-11-11_%E4%B8%8B%E5%8D%882.24.47_f0t2vi.png)
+![placeholder](https://res.cloudinary.com/dokdkay80/image/upload/v1605801186/AudioVisualizer/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7_2020-11-19_%E4%B8%8B%E5%8D%8811.21.18_k0pcox.png)
 
-The graph above shows two pairs of sound wave with the same frequency and different amplitudes in a x-time/y-amplitude plane. According to the superposition principle, we can simply add these waves to generate a new one.
+The graph above have shown the two sound waves with stable frequency and gradually amplified amplitude in the x-time/y-amplitude plane. According to the superposition principle, simply adding these waves will generate a new complex wave. 
 
-![placeholder](https://res.cloudinary.com/dokdkay80/image/upload/v1605162792/AudioVisualizer/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7_2020-11-11_%E4%B8%8B%E5%8D%882.25.24_rfaawm.png)
+![placeholder](https://res.cloudinary.com/dokdkay80/image/upload/v1605801187/AudioVisualizer/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7_2020-11-19_%E4%B8%8B%E5%8D%8811.22.20_fdt7q0.png)
 
 This is exactly what happend when the different sound waves met in the air and created a mixed tone. The datas of a audio file are just the discrete samples of a complex sound wave. From this perspective, we can say that making audio/music is adding different sound waves into a complex wave. Just the opposite, the Fourier Transform breaks down complex wave. No matter how complex the wave is, through a series of magical calculations(much more complicated than mixing them), the FT can identify every single-frequency wave within it.  
 
@@ -83,11 +83,11 @@ spectrumData[8191]	<=>		22050Hz/8192\*8192 = 22050  Hz  <=>  44100 times samplin
 
 The dependecies above also tell us that the longer the array the more the sampling and thus the more performance cost of the GetSpectrumData function.  
 
-Through adjusting the length of the array, we can obtain any certain frequency and expand the analyze for other purposes, e.g the pitchs.  
+Through adjusting the length of the array, any certain frequency's strength can be obtained and hence the analyze can be extended to other dimensions, e.g the pitchs.  
 
 ![placeholder](https://res.cloudinary.com/dokdkay80/image/upload/v1605164286/AudioVisualizer/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7_2020-11-12_%E4%B8%8B%E5%8D%882.57.30_vdylrr.png)
 
-According to this pitch/frequncy table, the highest pitch's frequncy of octave 9 is 15804Hz, which explained a little about the free fall at 16000Hz of the FFT result's chart above as well.
+According to this <a href="https://en.wikipedia.org/wiki/Scientific_pitch_notation">pitch/frequncy table</a>, the highest pitch's frequncy of octave 9 is 15804Hz, which explained a little about the free fall at 16000Hz of the FFT result's chart above as well.
 
 # Provide the spectrum datas to the audio visulizer
 
@@ -97,8 +97,8 @@ In the demo project, I obtained the spectrum datas in Update and injected them t
 
 Since the highest frequncy of the song is below 16000Hz, the audio visualizer only uses the 5461 of 8192 cubes to construct itself.  
 
-The core logic is in the Controller script: 
-
+The core logics of the demo are in the Controller script:   
+<br/>
 ```csharp
 using UnityEngine;
 using System.Collections;
