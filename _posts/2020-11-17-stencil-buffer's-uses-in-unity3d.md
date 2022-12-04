@@ -54,7 +54,7 @@ According to the Wikipedia, the very modern GPU architecture binds the stencil a
 
 In the OpenGL pipeline, between the fragment shader and the Blending, there are three testing stages that are scissor testing, stencil testing and Z-testing. All these testing operations have the OpenGL state machine style syntax, which is all about pre-setting and keywords.
 
-For stencil test, firstly you need to declar a Stencil struct in SubShader or Pass scope, and then use "Ref" to set a base stencil value to compare, "Comp" to set a comparing condition, "Pass" to determine the furthur operation if the comparetion successes, "Fail" in the opposite scenario, and "ZFail" if the comparetion had succeeded but depth test failed. All the comparison functions and stencil operation keywords can be found at <a href="https://docs.unity3d.com/Manual/SL-Stencil.html">Unity documentation</a>.
+For stencil test, firstly you need to declar a Stencil struct in SubShader or Pass scope, and then use "Ref" to set a base stencil value to compare, "Comp" to set a comparing condition, "Pass" to determine the furthur operation after the passed comparetion, "Fail" after the failed one, and "ZFail" after the passed stencil test combining the failed depth test. All the comparison functions and stencil operation keywords can be found at <a href="https://docs.unity3d.com/Manual/SL-Stencil.html">Unity documentation</a>.
 
 ```c
 Stencil {
