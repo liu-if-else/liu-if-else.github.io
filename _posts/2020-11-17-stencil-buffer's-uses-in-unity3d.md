@@ -1,9 +1,9 @@
 ---
 date: 2020-11-17 11:01:47
 layout: post
-title: "The Stencil Buffer of Unity3D"
+title: "The Stencil Buffer in Unity3D"
 subtitle: Outlining, polygon filling, mirror restricting and shadow volume.
-description: This article explains Unity Stencil Buffer with outlining, polygon filling, mirror restricting and shadow volume.
+description: This article explains the stencil buffer and illustrates with outlining, polygon filling, mirror restricting and shadow volume.
 image: https://res.cloudinary.com/dokdkay80/image/upload/c_scale,w_760/v1604503676/StencilBuffer/p1_fddhcm.png
 optimized_image: https://res.cloudinary.com/dokdkay80/image/upload/c_scale,w_380/v1604503676/StencilBuffer/p1_fddhcm.png
 category: Unity3D
@@ -42,19 +42,19 @@ math: true
 
 ## The stencil
 
-A stencil is a flat material where parts are cutted out, often in shapes or patterns. It's a traditional tool used by printing and clothing industry. Through the cut-outs, you draw or paint colours on the surface of the priting material beneath the stencil. 
+A stencil is a flat material, parts of which are cutted out often in shapes or patterns. It's a traditional tool used by printing and clothing industry. Through the cut-outs, you draw or paint colours on the surface of the printing material beneath the stencil. 
   
-Imagining the computer screen as a x\*y matrix of zeros, the stencil buffer cuts those zeros out by sets parts of them to 1,2,3,..., and 255. In each pass of the shader, the final output colours are masked by the stencil test, in which the fragment's current stencil value compares to the pre-setting one. The pixels will be discarded if they haven't passed the test. In this way, the buffer works like a rectangle stencil on top of the pixels.
+Imagining the computer screen as a x\*y matrix of zeros, the stencil buffer cuts those zeros out through setting parts of them to 1,2,3,..., or 255. In every pass of the shader, the final output colours are masked by the stencil test, in which the fragment's current stencil value compares to the pre-setting one. The pixels are discarded if they fail the test. In this way, the buffer works like a rectangle stencil on top of the pixels of the screen.
   
 ## The stencil and depth buffer
   
-According to the Wikipedia, the very modern GPU architecture binds the stencil and the depth buffer together. In other words, the 24 bits depth and 8 bits stencil information of a single fragment could be in a continuous 32 bits area of the Graphics RAM. When you create a render-texture in Unity, setting RenderTexture.depth to 32 will enable the 8 bits stencil buffer while 16(and 24?) disable it. Perhaps because of the proximity, the Z-test result can be obtained in the stencil testing stage.  
+According to the Wikipedia, the very modern GPU architecture binds the stencil and the depth buffer together. In other words, the 24 bits depth and 8 bits stencil information of a single fragment could be in a continuous 32 bits area of the Graphics RAM. When you create a render-texture in Unity, setting RenderTexture.depth to 32 enables the 8 bits stencil buffer while 16(and 24?) disables it. Perhaps because of the proximity, the Z-test result can also be obtained in the stencil testing stage.  
   
 ## Reading and writing
 
-Between the fragment shader and the Blending of the OpenGL pipeline, there are three testing stages: scissor testing, stencil testing and Z-testing. They share the same OpenGL state machine style syntax, which is all about pre-settings and keywords.
+Between the fragment shader and the Blending stage of the OpenGL pipeline, there are three testing stages: scissor testing, stencil testing and Z-testing. They share the same OpenGL state machine style syntax, which is all about pre-settings and keywords.
 
-For stencil test, firstly you need to declar a Stencil struct in the SubShader or Pass scope, and then use "Ref" keyword to set a standard stencil value, "Comp" to set a comparing condition, "Pass" to define the furthur operation for the passed stencil comparetion, "Fail" for the failed one, and "ZFail" for the passed stencil test with the failed depth test. All the comparison condition and stencil operation keywords can be found at the <a href="https://docs.unity3d.com/Manual/SL-Stencil.html">Unity documentation</a>.
+For stencil test, you need firstly to declar a Stencil struct in the SubShader or Pass scope, and then to use "Ref" keyword to set a standard stencil value, "Comp" to set a comparing condition, "Pass" to define the furthur operation to the fragments passed the stencil test, "Fail" to the fragments failed the stencil test, and "ZFail" for the fragments passed the stencil test but failed the depth test. All the comparison condition and stencil operation keywords can be found at the <a href="https://docs.unity3d.com/Manual/SL-Stencil.html">Unity documentation</a>.
 
 ```c
 Stencil {
@@ -203,7 +203,7 @@ Shader "Unlit/StentilOutline"
 		     ZFail keep     //default:keep
 		}
 ```
-This struct works in all passes since it is in the SubShader scope. Generally, all rasterized fragments will pass the "Ref 0" and "Comp Equal" test in the first shader pass since their stencil values are initial zero. "Pass IncrSat" adds one to the stencil value of each passed fragment. "Sat" makes the addition in the saturation style: if the result is higher then 255, it stays at 255.     
+This struct works in all passes since it is declared in the SubShader scope. Generally, all rasterized fragments will pass the "Ref 0" and "Comp Equal" test in the first shader pass since their stencil values are initial zero. "Pass IncrSat" adds one to the stencil value of every passed fragment. "Sat" makes the addition in the saturation style: if the result is higher than 255, it stays at 255.     
 
 ```c
 ...
@@ -211,7 +211,7 @@ This struct works in all passes since it is in the SubShader scope. Generally, a
 ...		       
 ```
 
-In the second pass, at first, vertices are magnified alone their normal direction to draw a bigger image. Within the new rendering area, the pixels rendered by the previous pass are with stenticl value of one. They can not pass the "Ref 0" and "Comp Equal" test and therefore will be discarded. On the other hand, the fragments of the newly inflated area will succeed the test since their stencil values are still zero.
+In the second pass, at first, vertices are magnified alone their normal direction to draw a bigger image. Within the new rendering area, the fragments at the pixels already rendered in the previous pass are with stenticl value of one. These fragments can not pass the "Ref 0" and "Comp Equal" test and therefore will be discarded. On the other hand, the fragments in the newly inflated area will succeed the test since their stencil values are still zero.
 
 ```c
 ...
@@ -392,9 +392,9 @@ Shader "Unlit/PolygonsBeta"
 
 ## Explanation
 
-This shader is similar to the example shader of "Red/Green/Blue" on the <a href="https://docs.unity3d.com/Manual/SL-Stencil.html">Unity website</a>. Both shaders rely on the stencil buffer to differenciate the cross areas of the geometries. 
+This shader is similar to the example shader "Red/Green/Blue" from the <a href="https://docs.unity3d.com/Manual/SL-Stencil.html">Unity website</a>. Both shaders rely on the stencil buffer to differenciate the cross areas of the geometries. 
 
-Each pass has its own stencil struct. In the first pass all fragments succeed the test and add one to their stencil values. In this pass all overlapped areas are marked. Their stencil values are equal to the number of the overlapped geometries. The next three passes render these areas.  
+Each pass has its own stencil struct. In the first pass all fragments succeed the test and add one to their stencil values. Because of the nature of the render queue of multiple objects, in this pass all overlapped fragments are marked. Their stencil values are equal to the number of the overlapped geometries. The next three passes render these areas accordingly.  
 
 ## Screenshots from rendering
   
@@ -599,11 +599,11 @@ Shader "Unlit/Mirror"
 ```
 ## Explanation
 
-The Mirror shader assists the TwoPassReflection shader to simulate a simple mirror effect. In the TwoPassReflection shader, the vertices are processed normally in the first pass and reflected in the second. The reflecting area often overlaps the mirror object therefore the ZTest of the second pass must set to Always. 
+The Mirror shader assists the TwoPassReflection shader to simulate a simple mirror effect. In the TwoPassReflection shader, the vertices process normally in the first pass and reflect in the second. The resulting reflecting area often overlaps the mirror object, therefore the ZTest of the second pass must set to Always. 
 
-If you insert a flat plane between those reflected fragments, visually it becomes a mirror. However, the effect will be debunked if the mirror object failed to cover the whole reflection(see picture 5 beneath).
+If you insert a flat plane between these reflected pixels, it becomes a mirror visually. However, the effect is debunked if the mirror object fails to cover the whole reflection(see picture 5 beneath).
 
-The solution is to render the mirror first, marking its fragments by setting their stencil values to one, and then to add a stencil test to the TwoPassReflection shader's second pass, discarding the fragments outside the mirror area.
+The solution is to render the mirror first, marking its fragments through setting their stencil values to one, and then to add a stencil test to the TwoPassReflection shader's second pass, discarding the fragments outside the mirror area.
   
 ## Screenshots from rendering
 
@@ -721,19 +721,19 @@ Shader "Unlit/SV_DepthFailBeta"
 
 ## Explanation
 
-The idea of shadow volume is to instaniate the shadow as a geometry, creating a mesh equals to the shadow's shape(see the cylinder shadow in picture 7) and then to identify all shadowed fragments along with the rendering process of this geometry.
+The idea of shadow volume is to instaniate the shadow as a geometry, creating a mesh with the same shape of the shadow (see the cylinder shadow in picture 7) and then to identify all shadowed fragments along with the rendering process of this geometry.
 
-In the rendering process, there are several algorithms to derterminate the shadowed fragments. The demo shader uses "Depth Fail" method, which also names as "Carmack’s reverse". From the perspective of stencil buffer, I simplify this algorithm to three steps:
+In this rendering process, there are several algorithms to derterminate the shadowed fragments. The demo shader uses "Depth Fail" method, which also names as "Carmack’s reverse". From the perspective of the stencil buffer, I simplify this algorithm to three steps:
 
-1, All shadowable objects, like ground, trees, rocks and etc., render first the shadow polyhedron after. The first shader pass of the shadow polyhedron is set to "cull front", rendering the inside surface only. The stencil test of the pass marks the Z-test-failed fragments through increasing their stencil value. The marked fragments could been inside or outside the shadow geometry. The fragments inside the shadow geometry are what we are looking for. The fragments outside the shadow geometry(e.g, between the camera and the shadow polyhedron) will be excluded in step 2. 
+1, All shadowable objects, like ground, trees, rocks and etc., render first and the shadow polyhedron after. The first shader pass of the shadow polyhedron sets to "cull front", rendering it's inside surface only. The stencil test of the pass marks the Z-test-failed fragments through increasing their stencil value. The marked fragments could be inside or outside the shadow geometry. The fragments inside the shadow geometry are what we are looking for. The fragments outside the shadow geometry (e.g, objects between the camera and the shadow polyhedron outside surface) will be excluded in step 2. 
 
-2, Set "cull back", the second pass renders the outside surface of the shadow geometry. The z-test-failed check finds shadow fragments outside the shadow polyhedron and then "ZFail DecrWrap" operation decreases their stencil values by one.
+2, Set "cull back", the second pass renders the outside surface of the shadow geometry. The z-test-failed check finds fragments outside the shadow polyhedron and then "ZFail DecrWrap" operation subtracts one from their stencil values.
 
-3, Consequently, only the fragments of the shadowable objects inside the shadow geometry are with the stencil value of 1 at the final step, rendering these pixels to get the correct shadow.
+3, Consequently, only the fragments of the shadowable objects inside the shadow geometry are with the stencil value of 1 at the final step. Render these fragments and you will get the correct shadow.
 
-From theory to practice, the three steps above have also explained the three passes of the shader SV_DepthFailBeta.  
+From theory to practice, these three steps have also well explained the three passes of the shader SV_DepthFailBeta above.  
 
-Actually, this single shader is not sufficient to implement the shadow volume technique. For instance, the appropriate shadow geometry, imported mesh or generated in the runtime, is a must but the demo has faked it through using the Unity standard primitive. Moreover, some details such as other shadows in the shadow polyhedron are not included in this discussion yet. Nonetheless, the shader illustrates well the stencil buffer's important role of putting this rendering technique into effect.
+Actually, this single shader is not sufficient to implement the shadow volume technique. For instance, the appropriate shadow geometry, imported mesh from 3D software like 3DMax or generated at the runtime in Unity, is a must but the demo has faked it through using the Unity standard primitive. Moreover, some details such as multi shadows, are not included in this discussion yet. Nonetheless, the shader illustrates well the stencil buffer's important role of putting this rendering technique into effect.
   
 ## Screenshots from rendering
 
