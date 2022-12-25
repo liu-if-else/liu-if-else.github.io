@@ -10,6 +10,8 @@ category: Unity3D
 tags:
 - Shader
 - Unity3D
+- Unity
+- stencil buffer
 author: liu_if_else
 paginate: false
 math: true

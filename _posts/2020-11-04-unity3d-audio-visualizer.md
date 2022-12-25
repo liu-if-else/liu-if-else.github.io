@@ -1,103 +1,112 @@
 ---
 date: 2020-11-04 13:37:54
 layout: post
-title: Unity3D Audio Visualizer
-subtitle: Understand Unity3D's GetSpectrumData function and use it make a audio visulizer.
-description: Understand the Unity GetSpectrumData function, the spectrum datas, the Fourier transform and related theorems and ultilize them to make a audio visualizer in Unity3D.
+title: The Theorem and Practice to Make an Unity3D Audio Visualizer
+subtitle: Using GetSpectrumData function of Unity3D to make an audio visulizer.
+description: This article explains the Unity GetSpectrumData function, the spectrum data, the Fourier transform and related theorems and how to make a audio visualizer in Unity3D.
 image: https://res.cloudinary.com/dokdkay80/image/upload/c_scale,w_760/v1604498366/AudioVisualizer/av1_itqijr.png
 optimized_image: https://res.cloudinary.com/dokdkay80/image/upload/c_scale,w_380/v1604498366/AudioVisualizer/av1_itqijr.png
 category: Unity3D
 tags:
 - Unity3D
+- Unity
 - AudioVisualizer
+- GetSpectrumData
+- Fourier transform
+- SpectrumData
+- Sound
 author: liu_if_else
 paginate: false
 math: true
 ---
 # Menu
-- [Take a gander at some terminologies and concepts](#take-a-gander-at-some-terminologies-and-concepts)
-- [Understand the Unity GetSpectrumData function](#understand-the-unity-getspectrumdata-function)
-- [The spectrum datas and the Fourier transform](#the-spectrum-datas-and-the-Fourier-transform)
-- [Provide the spectrum datas to the audio visulizer](#provide-the-spectrum-datas-to-the-audio-visulizer)
+- [Terminologies](#terminologies)
+- [The Unity GetSpectrumData function](#the-unity-getspectrumdata-function)
+- [The spectrum data and the Fourier transform](#the-spectrum-data-and-the-Fourier-transform)
+- [The audio visulizer](#the-audio-visulizer)
 
-# Take a gander at some terminologies and concepts
+# Terminologies
 
-**Sound**: A sort of wave, viberated in the air with a frequency between 20Hz and 20000Hz.  
-**Sound Frequency**: The times that sound viberated per second. It's unit is herz.   
-**Sampling**: Get a sample, a value, from a sound wave.     
-**Sampling Rate**: The times of the Sampling per second.    
-**Fast Fourier Transform**: the FFT can used to transform signals.  
-**Window Function**: To reduce the "signal to noise ratio".  
-**Decibel**: A well-known value used to measure sound's volume. In this artikel, the strength of the sound wave is a relative value and has nothing to do with the decibel.
+**Sound**: In the aspect of physics, the sound is a sort of wave that viberats in the air with a frequency between 20Hz and 20000Hz.  
+**Sound Frequency**: The sound frequency is the times of the sound's vibration per second. It's unit is herz.   
+**Sampling**: In this article, sampling means to get a sample, a value, from a sound wave.     
+**Sampling Rate**: Sampling rate is the times of the Sampling per second.    
+**Fast Fourier Transform**: Abbreviated as FFT, it is a math function that can be used to transform signals.  
+**Window Function**: An variable of the FFT function, it can be used to reduce the "signal to noise ratio".  
+**Decibel**: It is a well-known value to measure sound's volume. However, in this article, the strength of the sound wave is a relative value and has nothing to do with the decibel.
 
-# Understand the Unity GetSpectrumData function
+# The Unity GetSpectrumData function
 
 **public void GetSpectrumData(float[] samples, int channel, FFTWindow window);**  
 
 **samples**: The array is the return value of the funciton. Each element's value is the strength of the audio source at a certain frequency. To be optimized for the Fourier transform algorithm, the length of the array must be the power of two, minimal 64 and maximum 8192.  
-**channel**: Stereo seperates a audio source into different parts, or say channels, and provided them to distanced audio hardwares to play. In this case, the channel parameter can be used to choose a certain channel to sample by the FFT. Setting to 0 will sample all channels, as same as in case of mono.  
-**window**: A helper function for the FFT to reduce noises. There is a trade-off of the complexity of the window-function for reducing the noises.  
+**channel**: Nowadays audio hardware system has more than one speaker. The mechanism of seperating an audio into different parts, also called channels, and then providing them to different speakers to play is called steoro. On the contrast, all speakers playing the same audio is called Mono. In the case of steoro, the channel parameter is used to choose a certain channel of the audio to sample. Normally this parameter should be set to 0 (Mono mode) to sample all channels.
+**window**: This parameter decides the helper function for the FFT to reduce noises. There is a trade-off between the complexity of the window-function and noises reducing performance.
 **usage**:
 ```csharp
 public float[] spectrumData=new float[8192];  
 thisAudioSource.GetSpectrumData(spectrumData,0,FFTWindow.BlackmanHarris);  
 ```
 
-# The spectrum datas and the Fourier transform
+# The spectrum data and the Fourier transform
 
 Given the sampling time T, the samples N and the sampling rate $f_s$, we can make a formula: $T=N/f_s$.  
 
-The reciprocal of T, $f_s/N$, is called Frequency Resolution. The charts below are the results of the FFT of the demo audio. They show that the higher the Frequency Resolution the denser the datas transformed.
+The reciprocal of T, which is $f_s/N$, is called Frequency Resolution. The charts below are the results of the FFT of the demo audio in low/high Frequency Resolution. It is clear to see that the higher the Frequency Resolution the denser the data transformed.
 
 ![placeholder](https://res.cloudinary.com/dokdkay80/image/upload/v1604498587/AudioVisualizer/av3_vnggql.png)
 ![placeholder](https://res.cloudinary.com/dokdkay80/image/upload/v1604498510/AudioVisualizer/av4_ljqbsw.png)
 
-The length of the spectrumData array is actually the Frequency Resolution and every array's element has a x/y value in the diagrams above. Unfortunately, we can't get the frequency, the x, of a element(but well the strength which is y) at runtime and I can't find any clue in the Unity documentation either. So let's try to figure it out through some tests.  
+The length of the spectrumData array that is returned by the GetSpectrumData is actually the Frequency Resolution and the array's each element's value represents a y/x value in the diagrams above. Unfortunately, it is unclear whether these values are the power spectrums or the powers at a given frequency but it is good enough most of the time as long as they are relative numbers. 
 
-Using a software to analyze "[MV] FIESTAR(피에스타) _ Mirror.mp3", we can see that there is a free fall of the strength values at the 16000Hz frequency. 
+Another problem is that the information about the representing frequency of the array's element is unwritten in the Unity's documentation or C# source code. Determinating the frequency is vital at runtime. So let's try to figure it out through some tests.  
+
+Using a software to analyze "[MV] FIESTAR(피에스타) _ Mirror.mp3", we can see that there is a free fall of the wave around the 16000Hz frequency. 
 
 ![placeholder](https://res.cloudinary.com/dokdkay80/image/upload/v1604498406/AudioVisualizer/av5_aze0ep.png)
 
-Back to Unity, Debugging the spectrumdata's values, there is also a significant decrease at spectrumData[5500]. Therefore, it can be deduced that the spectrumData[5500] represences the frequency around 16000Hz. Moreover, 16000Hz/5500\*8192=23831Hz, we can also conclude that the highest frequency the function returned is between 22000Hz to 24000Hz. 
+Back to Unity, debugging the spectrum-data shows a significant decrease of value at spectrumData[5500]. Therefore, it can be deduced that the spectrumData[5500] represences the frequency around 16000Hz. Moreover, because 16000Hz/5500\*8192=23831Hz, so another conclusion is that the highest possible frequency of the specturm-data is between 22000Hz to 24000Hz. 
 
-In addtion to the tests, other clues can be found from the angle of the Fourier Transform. The core algorithm of GetSpectrumData function is the FFT. As mentioned in the beginning, sound is a sort of wave where frequency decided pitch and amplitude determined volume. 
+In addtion to the tests, other clues can be found from the angle of the Fourier Transform. The core algorithm of GetSpectrumData function is the FFT. As mentioned in the beginning, sounds can be seen as waves where wave's frequency decided sound's pitch and amplitude determined volume. 
 
 ![placeholder](https://res.cloudinary.com/dokdkay80/image/upload/v1605801186/AudioVisualizer/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7_2020-11-19_%E4%B8%8B%E5%8D%8811.21.18_k0pcox.png)
 
-The graph above have shown the two sound waves with stable frequency and gradually amplified amplitude in the x-time/y-amplitude plane. According to the superposition principle, simply adding these waves will generate a new complex wave. 
+The graph above shows the two sound waves with the stable frequency and gradually amplified amplitude in the x-time/y-amplitude plane. According to the superposition principle, simply adding these waves will generate a new complex wave. 
 
 ![placeholder](https://res.cloudinary.com/dokdkay80/image/upload/v1605801187/AudioVisualizer/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7_2020-11-19_%E4%B8%8B%E5%8D%8811.22.20_fdt7q0.png)
 
-This is exactly what happend when the different sound waves met in the air and created a mixed tone. The datas of a audio file are just the discrete samples of a complex sound wave. From this perspective, we can say that making audio/music is adding different sound waves into a complex wave. Just the opposite, the Fourier Transform breaks down complex wave. No matter how complex the wave is, through a series of magical calculations(much more complicated than mixing them), the FT can identify every single-frequency wave within it.  
+This is exactly what happend when the different sound waves met in the air to create a mixed tone. The data of a audio file are just the discrete samples of a complex sound wave. From this perspective, we can say that making audio/music is adding different sound waves into a complex wave. Just the opposite, the Fourier Transform breaks down the complex wave to simple waves. No matter how complex the wave is, through a series of magical calculations(much more complicated than those to mix them), the FT can identify every single-frequency wave within it.  
 
-From the viewpoint of two-dimensional space, the Fourier Transform will translate the complex wave from the "x-time/y-amplitude" plane(the last chart above) to the "x-frequency/y-strength"(e.g the third graph) and then to many "x-time/y-strength of a wave with fixed frequency". The strength of every single wave, the y, on the time axis will become the value of the correspond element of spectrumData array.  
+From the viewpoint of the two-dimensional space, the Fourier Transform will translate the complex wave from the "x-time/y-amplitude" plane(the last chart above) to the "x-frequency/y-power"(e.g the third graph of this article) and then to multiple "x-time/y-power of a single wave" planes with different frequency. Finally, every y (power of a single wave) information saves to the elements of the spectrumData array in order of it's frequency.
 
-In this transfomation process, the FFT firstly needs to sample the original complex wave on the time axis with a fast interval repeatedly. To correctly reconstruct the single-frequency wave, sufficient samples are necessary. Here comes "the Nyquist–Shannon sampling theorem". To put it simply, the theorem states that the number of the sufficient samples is the frequency multiply by two. For instance, for a 3Hz wave you need 6 samples. 
+In this transfomation process, firstly, the FFT samples the original complex wave on the time axis repeatedly with a constant interval. To correctly reconstruct the single-frequency wave, sufficient samples are necessary. And here comes "the Nyquist–Shannon sampling theorem". To put it simply, the theorem states that the number of the sufficient samples is the frequency multiply by two. For instance, 3Hz wave needs 6 samples. 
 
-The nowadays music industry adopts the 44100Hz sampling rate standard. So a music audio of one second contains 44100 samples. Because of the restriction of the Nyquist theorem, the highest frequency the FFT can correctly analyze is 22050Hz, which is consistent with the conclusion of the tests above. Given the highest frequency and the length of the spectrumData array, we can further determine the exact frequencies presented by the elements of the array. For example, the demo project has used a 8192 array:  
+The standard sampling rate of nowadays music industry is 44100Hz. In other words, one second of a music audio file contains 44100 samples. According to the Nyquist theorem, the highest frequency of a single wave the FFT can correctly reconstruct is 22050Hz, which is consistent with the conclusion of the tests above. 
+
+Given the highest frequency and the length of the spectrumData array, now we can further determine the exact frequencies of each element of the array. For example, the demo project of this article has used a 8192 array:  
 
 spectrumData[0]		<=>		22050Hz/8192\*1    = 2.6916 Hz  <=>  6 times sampling per second  
 spectrumData[1]		<=>		22050Hz/8192\*2    = 5.3833 Hz  <=>  11 times sampling per second  
 ...    
 spectrumData[8191]	<=>		22050Hz/8192\*8192 = 22050  Hz  <=>  44100 times sampling per second  
 
-The dependecies above also tell us that the longer the array the more the sampling and thus the more performance cost of the GetSpectrumData function.  
+The table clearly shows another conclusion, the longer the array the more the sampling and thus the more performance cost of the GetSpectrumData function.  
 
-Through adjusting the length of the array, any certain frequency's strength can be obtained and hence the analyze can be extended to other dimensions, e.g the pitchs.  
+Adjusting the length of the array, many frequency's strength can be obtained. Hence the analyze can be extended to a wider range, e.g grabing the pitchs of music.  
 
 ![placeholder](https://res.cloudinary.com/dokdkay80/image/upload/v1605164286/AudioVisualizer/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7_2020-11-12_%E4%B8%8B%E5%8D%882.57.30_vdylrr.png)
 
-According to this <a href="https://en.wikipedia.org/wiki/Scientific_pitch_notation">pitch/frequncy table</a>, the highest pitch's frequncy of octave 9 is 15804Hz, which explained a little about the free fall at 16000Hz of the FFT result's chart above as well.
+According to this <a href="https://en.wikipedia.org/wiki/Scientific_pitch_notation">pitch/frequncy table</a>, the highest pitch's frequncy of octave 9 is 15804Hz. This explains the phenomenon of the free fall around 16000Hz of the FFT of the song in the above test.
 
-# Provide the spectrum datas to the audio visulizer
+# The audio visulizer
 
-<a href="https://github.com/liu-if-else/UnitySpectrumData">Github Link of the demo project</a>
+<a href="https://github.com/liu-if-else/UnitySpectrumData">The Github Link of the demo project</a>
 
-In the demo project, I obtained the spectrum datas in Update and injected them to the scale of the cubes and the colors of their materials. The workload is distributed to both CPU and GPU. If you want to reduce the burden of CPU, another idea is to translate the whole spectrum datas, the array, to the GPU(since you have to use this bandwidth to set colors anyway) and to hand over all the work to the shaders, like vertex animation, color calculation and etc. Using vertex or fragment shader to calculate the color instead of CPU is also more friendly for batching and will reduce a lot of SetPass calls.  
+In the demo project, I obtain the spectrum data in Update and inject them to the scales of the cubes and the colors of cubes' materials. The workload is distributed to both CPU and GPU. If you want to reduce the burden of CPU, another idea is to translate the whole spectrum data, the array, to the GPU(since you have to use this bandwidth to set colors anyway) and then to hand over all the work, like vertex animation, color calculation and etc, to shaders. Using the vertex or fragment shader to calculate colors instead of CPU is also more friendly for batching, which could reduce a lot of SetPass calls.  
 
-Since the highest frequncy of the song is below 16000Hz, the audio visualizer only uses the 5461 of 8192 cubes to construct itself.  
+Since the highest meaningful frequncy of the song is below 16000Hz, the audio visualizer only uses 5461 cubes.  
 
-The core logics of the demo are in the Controller script:   
+The core logic of the demo is in the Controller script:   
 <br/>
 ```csharp
 using UnityEngine;
@@ -193,7 +202,7 @@ public class Controller : MonoBehaviour {
             gridOverlay.mainColor = new Vector4(gridColor, 0.5f, 1f, 1f);
         }
     }
-    //inject spectrumDatas to the scale of the cubes
+    //inject spectrumData to the scale of the cubes
     void Spectrum2Cube(){
         thisAudioSource.GetSpectrumData(spectrumData, 0, FFTWindow.BlackmanHarris);
         for (int i = 0; i < 5461; i++)
@@ -295,7 +304,7 @@ public class Controller : MonoBehaviour {
 } 
 ```
 
-Screenshots from the Editor:
+Screenshots from rendering:
 
 ![placeholder](https://res.cloudinary.com/dokdkay80/image/upload/v1604498463/AudioVisualizer/av2_r15mar.png)
 
@@ -313,5 +322,5 @@ What is the Fourier Transform — 3Blue1Brown
 <a href="https://www.youtube.com/watch?v=spUNpyF58BY">https://www.youtube.com/watch?v=spUNpyF58BY</a>  
 
 ----
-**Chinese Version of this artikel:**  
+**The Chinese Version of this articel:**  
 <a href="https://blog.csdn.net/liu_if_else/article/details/51233799">https://blog.csdn.net/liu_if_else/article/details/51233799</a>  
