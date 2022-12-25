@@ -22,7 +22,7 @@ math: true
 # Menu
 - [Terminologies](#terminologies)
 - [The Unity GetSpectrumData function](#the-unity-getspectrumdata-function)
-- [The spectrum data and the Fourier transform](#the-spectrum-data-and-the-Fourier-transform)
+- [The spectrum data and the Fourier transform](#the-spectrum-data-and-the-fourier-transform)
 - [The audio visulizer](#the-audio-visulizer)
 
 # Terminologies
